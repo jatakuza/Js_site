@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Users</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+    <h1>Users</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="users.html">Users</a>
+    <a href="schedules.html">Schedules</a>
+</nav>
+
+<div class="container">
+    <div id="user-info"></div>
+
+    <h2>User List</h2>
+    <div id="users-list"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+async function loadUsers() {
+    if (!requireAuth()) return;
+
+    try {
+        const response = await fetch(`${API_URL}/users`);
+        const users = await response.json();
+
+        const container = document.getElementById('users-list');
+        container.innerHTML = '';
+
+        users.forEach(user => {
+            container.innerHTML += `
+                <div class="card">
+                    <h3>${user.full_name}</h3>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Login:</strong> ${user.login}</p>
+                    <p><strong>Role:</strong> ${user.user_role}</p>
+                </div>
+            `;
+        });
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showUserInfo();
+    loadUsers();
+});
+</script>
+</body>
+</html>

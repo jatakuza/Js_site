@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Schedule Hosts</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+    <h1>Schedule Hosts</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="users.html">Users</a>
+    <a href="schedules.html">Schedules</a>
+    <a href="schedule_hosts.html">Hosts</a>
+</nav>
+
+<div class="container">
+    <div id="user-info"></div>
+
+    <h2>Hosts</h2>
+    <div id="hosts-list"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+async function loadHosts() {
+    if (!requireAuth()) return;
+
+    try {
+        const response = await fetch(`${API_URL}/schedule-hosts`);
+        const hosts = await response.json();
+
+        const container = document.getElementById('hosts-list');
+        container.innerHTML = '';
+
+        hosts.forEach(h => {
+            container.innerHTML += `
+                <div class="card">
+                    <p><strong>Schedule ID:</strong> ${h.schedule_id}</p>
+                    <p><strong>Host ID:</strong> ${h.host_id}</p>
+                </div>
+            `;
+        });
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showUserInfo();
+    loadHosts();
+});
+</script>
+</body>
+</html>

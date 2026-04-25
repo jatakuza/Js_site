@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registration</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h1>Register</h1>
+        <p>Create a new account to get started</p>
+
+        <form onsubmit="registerUser(event)">
+            <input 
+                type="text" 
+                id="full_name" 
+                placeholder="Full Name" 
+                required
+            />
+
+            <input 
+                type="email" 
+                id="email" 
+                placeholder="Email Address" 
+                required
+            />
+
+            <input 
+                type="text" 
+                id="login" 
+                placeholder="Login" 
+                required
+            />
+
+            <input 
+                type="password" 
+                id="password" 
+                placeholder="Password" 
+                required
+            />
+
+            <select id="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="participant">Participant</option> <option value="organizer">Organizer</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Create Account</button>
+
+            <div id="message" class="message"></div>
+        </form>
+
+        <p style="margin-top: 14px;">
+            Already have an account? <a href="login.html" style="color:white;">Login</a>
+        </p>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
