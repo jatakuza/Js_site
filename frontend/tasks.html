@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Event Task Management Board</h1>
+    <p>Manage event preparation, schedules, speakers and project tasks</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="users.html">Users</a>
+    <a href="schedules.html">Schedules</a>
+    <a href="tasks.html">Tasks</a>
+</nav>
+
+<div class="container">
+
+    <!--<div id="user-info"></div>-->
+
+    <div class="card">
+        <h2>Add New Task</h2>
+
+        <form id="task-form">
+            <input type="text" id="task-title" placeholder="Task title" required>
+
+            <textarea id="task-description"
+                      placeholder="Task description"></textarea>
+
+            <select id="task-priority">
+                <option value="Low">Low Priority</option>
+                <option value="Medium">Medium Priority</option>
+                <option value="High">High Priority</option>
+            </select>
+
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Filter Tasks</h2>
+
+        <input type="text"
+               id="search-input"
+               placeholder="Search tasks...">
+
+        <p id="task-counter"></p>
+    </div>
+
+    <div id="notification"></div>
+
+    <div class="board">
+
+        <div class="column"
+             data-status="todo">
+            <h2>To Do</h2>
+            <div class="task-list" id="todo"></div>
+        </div>
+
+        <div class="column"
+             data-status="progress">
+            <h2>In Progress</h2>
+            <div class="task-list" id="progress"></div>
+        </div>
+
+        <div class="column"
+             data-status="review">
+            <h2>Review</h2>
+            <div class="task-list" id="review"></div>
+        </div>
+
+        <div class="column"
+             data-status="done">
+            <h2>Done</h2>
+            <div class="task-list" id="done"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+<script src="tasks.js"></script>
+
+</body>
+</html>
